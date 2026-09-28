@@ -1,0 +1,14 @@
+; Soma 1+2+...+N com N=5 → resultado em $00 (=15)
+;   LDX #$05
+;   LDA #$00
+;   CLC
+; loop:
+;   STX $01
+;   ADC $01
+;   DEX
+;   BNE loop
+;   STA $00
+;   BRK
+;
+; Bytes (montados a mão, PC=$8000):
+; A2 05 A9 00 18 86 01 65 01 CA D0 F9 85 00 00

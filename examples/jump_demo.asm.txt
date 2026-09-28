@@ -1,0 +1,2 @@
+; JMP $8005; (skip); LDA #$7F; BRK
+; Bytes: 4C 05 80 A9 00 A9 7F 00

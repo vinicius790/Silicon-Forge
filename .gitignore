@@ -1,0 +1,22 @@
+# Build artifacts
+target/
+Cargo.lock.bak
+**/*.rs.bk
+*.pdb
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+
+# Output distribution
+dist/
+*.bin.bak

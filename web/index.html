@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOS 6502 / 65C02 Retro Web Playground & IDE</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body class="crt-theme">
+  <header>
+    <div class="logo-container">
+      <span class="logo-icon">&#9881;</span>
+      <div>
+        <h1>MOS 6502 / 65C02 VIRTUAL WORKSTATION</h1>
+        <p class="subtitle">6502 instruction subset, source assembler & live state inspector</p>
+      </div>
+    </div>
+    <div class="header-badges">
+      <span class="badge">NMOS / CMOS</span>
+      <span class="badge">6502 SUBSET</span>
+      <span class="badge highlight">64 KiB RAM</span>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="btn-group">
+      <button id="btn-run" class="btn btn-primary">&#9654; Run</button>
+      <button id="btn-step" class="btn">&#9197; Step</button>
+      <button id="btn-reset" class="btn btn-danger">&#8635; Reset</button>
+    </div>
+
+    <div class="select-group">
+      <label for="example-select">Examples:</label>
+      <select id="example-select">
+        <option value="fibonacci">Fibonacci Sequence (10 terms)</option>
+        <option value="sum_loop">Accumulator Sum Loop (1+..+N)</option>
+      </select>
+    </div>
+
+    <div class="status-indicator">
+      <span id="cpu-status-dot" class="dot dot-green"></span>
+      <span id="cpu-status-text">READY</span>
+    </div>
+  </div>
+
+  <main class="workbench">
+    <!-- Left Pane: Code Editor -->
+    <section class="panel editor-panel">
+      <div class="panel-header">
+        <h2>Assembly Source (6502)</h2>
+        <span class="panel-tag">Origin: $8000</span>
+      </div>
+      <div class="editor-wrapper">
+        <textarea id="asm-editor" spellcheck="false"></textarea>
+      </div>
+      <div class="editor-footer">
+        <span id="asm-stats">0 lines | 0 bytes compiled</span>
+        <button id="btn-assemble" class="btn btn-small">Assemble Only</button>
+      </div>
+    </section>
+
+    <!-- Center/Right Pane: CPU State & Live Hardware -->
+    <section class="panel hardware-panel">
+      <!-- Registers & Status Flags -->
+      <div class="panel-header">
+        <h2>CPU Registers & Flags</h2>
+        <span class="panel-tag" id="cycle-counter">Cycles: 0</span>
+      </div>
+      <div class="registers-grid">
+        <div class="reg-box"><span class="reg-label">A</span><span class="reg-val" id="reg-a">00</span></div>
+        <div class="reg-box"><span class="reg-label">X</span><span class="reg-val" id="reg-x">00</span></div>
+        <div class="reg-box"><span class="reg-label">Y</span><span class="reg-val" id="reg-y">00</span></div>
+        <div class="reg-box"><span class="reg-label">SP</span><span class="reg-val" id="reg-sp">FD</span></div>
+        <div class="reg-box highlight-pc"><span class="reg-label">PC</span><span class="reg-val" id="reg-pc">8000</span></div>
+      </div>
+
+      <div class="flags-container">
+        <span class="flags-title">Flags (P):</span>
+        <div class="flags-list" id="flags-display">
+          <span class="flag" id="flag-n">N:0</span>
+          <span class="flag" id="flag-v">V:0</span>
+          <span class="flag disabled">-:1</span>
+          <span class="flag" id="flag-b">B:0</span>
+          <span class="flag" id="flag-d">D:0</span>
+          <span class="flag" id="flag-i">I:1</span>
+          <span class="flag" id="flag-z">Z:0</span>
+          <span class="flag" id="flag-c">C:0</span>
+        </div>
+      </div>
+
+      <!-- Disassembly Live View -->
+      <div class="panel-header sub-header">
+        <h2>Live Disassembly</h2>
+      </div>
+      <div class="disasm-window" id="disasm-view">
+        <!-- Lines populated by JS -->
+      </div>
+
+      <!-- Memory Hex Dump -->
+      <div class="panel-header sub-header">
+        <h2>Memory Inspector</h2>
+        <div class="mem-nav">
+          <button class="btn btn-tiny" id="btn-mem-zp">Zero Page ($00)</button>
+          <button class="btn btn-tiny" id="btn-mem-stack">Stack ($01)</button>
+          <button class="btn btn-tiny" id="btn-mem-code">Code ($8000)</button>
+        </div>
+      </div>
+      <div class="memory-window" id="memory-view">
+        <!-- Hex dump populated by JS -->
+      </div>
+
+      <!-- Console / Terminal Output -->
+      <div class="panel-header sub-header">
+        <h2>System Terminal & Console</h2>
+      </div>
+      <div class="console-window" id="console-view">
+        <div class="console-line text-green">&gt; MOS 6502 Virtual Machine initialized.</div>
+        <div class="console-line text-yellow">&gt; Supported instruction subset ready; unknown opcodes stop with a fault.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>MOS 6502 browser prototype &bull; JavaScript instruction subset &bull; MIT License</p>
+  </footer>
+
+  <script src="assembler.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

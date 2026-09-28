@@ -1,0 +1,5 @@
+; Entrada executável do assembler mínimo; origem padrão $8000.
+; Bytes esperados: A9 42 85 10 00
+LDA #$42
+STA $10
+BRK

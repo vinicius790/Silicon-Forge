@@ -1,0 +1,17 @@
+# file	kind	variant	count	dump	expected
+# kind: asm or bin. count is in CPU cycles. expected is the MEM line the run must print.
+examples/fibonacci.asm	asm	nmos	3000	0x00:12	MEM[0000]: 00 01 01 02 03 05 08 0D 15 22 37 59
+examples/sieve_primes.asm	asm	nmos	20000	0x00:31	MEM[0000]: 00 00 01 01 00 01 00 01 00 00 00 01 00 01 00 00 00 01 00 01 00 00 00 01 00 00 00 00 00 01 00
+examples/selftest.asm	asm	nmos	20000	0x200:1	MEM[0200]: 14
+examples/selftest.asm	asm	cmos	20000	0x200:1	MEM[0200]: 13
+examples/selftest.asm	asm	nes	20000	0x200:1	MEM[0200]: 05
+examples/hello_lda.bin	bin	nmos	20	0x10:1	MEM[0010]: 42
+examples/sum_loop.bin	bin	nmos	200	0x00:2	MEM[0000]: 0F 01
+examples/crc16.asm	asm	nmos	3000	0x00:2	MEM[0000]: B1 29
+examples/muldiv.asm	asm	nmos	3000	0x00:5	MEM[0000]: 18 60 E6 1B 06
+examples/sieve_256.asm	asm	nmos	40000	0x00:1	MEM[0000]: 36
+examples/wozmon_lite.asm	asm	nmos	40000	0x400:0x20	MEM[0400]: 0D 30 33 30 30 3A 20 30 30 0D 30 33 30 30 3A 20 31 31 20 32 32 20 33 33 20 34 34 20 35 35 20 36
+examples/forth_lite.asm	asm	nmos	400000	0x400:0x2e	MEM[0400]: 31 32 30 20 34 39 20 31 30 20 39 20 38 20 37 20 36 20 35 20 34 20 33 20 32 20 31 20 41 44 0D 36 30 30 30 30 20 37 20 36 35 35 33 32 20 00
+examples/basic_tokenizer.asm	asm	nmos	120000	0x600:0x20	MEM[0600]: 0A 00 8B 20 43 4F 55 4E 54 20 54 4F 20 46 49 56 45 00 14 00 81 41 3D 31 00 1E 00 80 22 41 20 49
+examples/float_lite.asm	asm	nmos	20000	0x400:0x20	MEM[0400]: 82 70 00 00 81 40 00 00 81 C0 00 00 87 48 00 00 00 00 00 00 85 90 00 00 83 60 00 00 FF 7F FF FF
+examples/lz_decompress.asm	asm	nmos	40000	0x400:0x6b	MEM[0400]: 54 4F 20 42 45 20 4F 52 20 4E 4F 54 20 54 4F 20 42 45 2C 20 54 48 41 54 20 49 53 20 54 48 45 20 51 55 45 53 54 49 4F 4E 2E 20 54 4F 20 42 45 20 4F 52 20 4E 4F 54 20 54 4F 20 42 45 2C 20 54 48 41 54 20 49 53 20 54 48 45 20 41 4E 53 57 45 52 2E 20 41 42 41 42 41 42 41 42 41 42 41 42 41 42 41 42 41 42 41 42 41 42 41 42 21
