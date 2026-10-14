@@ -6,7 +6,7 @@ authors = ["Vinícius Fernandes Lustosa"]
 description = "MOS 6502 and 65C02 emulator suite: assembler with four-level macros, bus-cycle stepping (official, stable unofficial, CMOS, JAM halt), 6551 ACIA baud nibble plus parity and stop bits, 6522 ports/timers/handshake/PB7/shift, JSON snapshot v2 through v5, debugger PC-range watch, palette and name table, and a VIA IRQ board."
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/geraliza/01-02-mos6502"
+repository = "https://github.com/vinicius790/Silicon-Forge"
 keywords = ["6502", "emulator", "cpu", "apple1", "assembler"]
 categories = ["emulators", "command-line-utilities", "hardware-support"]
 
